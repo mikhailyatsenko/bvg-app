@@ -1,0 +1,91 @@
+.stops-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  .stop-name {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: yellow;
+    flex-shrink: 0;
+    cursor: pointer;
+    &:hover {
+      background-color: orange;
+    }
+  }
+}
+.arrivals-table {
+  padding-top: 10px;
+  .arrival-info {
+    display: flex;
+    .time,
+    .type,
+    .transport-number,
+    .destination {
+      position: relative;
+      width: max-content;
+      min-width: 102px;
+      text-align: center;
+      padding: 10px;
+    }
+
+    &:first-child {
+      .time::before {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        width: max-content;
+        transform: translateX(-50%);
+        content: "Arrival time";
+      }
+      .transport-number::before {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        content: "Number";
+      }
+      .destination::before {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        content: "Destination";
+      }
+      .type::before {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        content: "Type";
+      }
+    }
+  }
+}
+main {
+  input,
+  select {
+    padding: 5px;
+    border: 0;
+    border-bottom: 1px solid black;
+
+    margin: 10px;
+  }
+  input {
+    display: block;
+    margin: 10px auto;
+  }
+  input:focus-visible {
+    outline: 0;
+  }
+  .arrival-options {
+    text-align: center;
+  }
+  .stop-info {
+    width: fit-content;
+    margin: 0 auto;
+    .selected-stop-name {
+      text-align: center;
+    }
+  }
+}
