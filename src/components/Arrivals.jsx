@@ -1,5 +1,7 @@
+import LoaderGrid from "./LoaderGrid";
+
 function Arrivals(props) {
-  const { changePeriod, changeTransport, toggleStopInFav, arrivals, selectedStopName, isStopInfavoriteStops } = props;
+  const { changePeriod, changeTransport, toggleStopInFav, arrivals, selectedStopName, isStopInfavoriteStops, isLoading } = props;
 
   return (
     <>
@@ -15,11 +17,9 @@ function Arrivals(props) {
               <option value="regional">Regional</option>
             </select>
             <select onChange={changePeriod}>
-              <option value="3">3 minutes</option>
-              <option value="5">5 minutes</option>
               <option value="10">10 minutes</option>
               <option value="20">20 minutes</option>
-              <option value="50">50 minutes</option>
+              <option value="30">30 minutes</option>
             </select>
           </div>
 
@@ -33,23 +33,26 @@ function Arrivals(props) {
                 className={"tooltip material-symbols-outlined " + (isStopInfavoriteStops() && "filled")}
               >
                 star
-                <span class="tooltiptext">Tooltip text</span>
               </span>
             </div>
 
             <div className="arrivals-table">
-              {arrivals.map((arrival, index) => (
-                <div className="arrival-info" key={index}>
-                  <div className="time">{new Date(arrival.when).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</div>
-                  <div className="type">{arrival.line.product.toUpperCase()}</div>
-                  <div className="transport-number">{arrival.line.name}</div>
-                  <div className="destination"> {`"${arrival.provenance}"`}</div>
-                </div>
-              ))}
+              {arrivals.length
+                ? arrivals.map((arrival, index) => (
+                    <div className="arrival-info" key={index}>
+                      <div className="time">{new Date(arrival.when).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</div>
+                      <div className="type">{arrival.line.product.toUpperCase()}</div>
+                      <div className="transport-number">{arrival.line.name}</div>
+                      <div className="destination"> {`"${arrival.provenance}"`}</div>
+                    </div>
+                  ))
+                : "There is not arrivals for selected transport and time :("}
             </div>
           </div>
         </div>
       )}
+
+      {isLoading && <LoaderGrid />}
     </>
   );
 }

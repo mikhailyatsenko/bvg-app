@@ -10,13 +10,13 @@ function MainPage(props) {
   // const regionalArrivals = arrivals.filter((arrival) => arrival.line.product === "regional");
 
   useEffect(() => {
-    if (inputRef.current) inputRef.current.focus();
+    if (inputRef.current && !selectedStopName) inputRef.current.focus();
   });
 
   return (
     <>
       <input
-        className="input-stop-name"
+        className={"input-stop-name " + (selectedStopName && "small-input")}
         type="text"
         value={inputValue}
         placeholder="type stop name here..."
@@ -25,8 +25,6 @@ function MainPage(props) {
           updateInput(event.target.value);
         }}
       />
-
-      {isLoading && <div className="loader">Loading...</div>}
 
       {!selectedStopName && !isLoading && (
         <div className="stops-list">

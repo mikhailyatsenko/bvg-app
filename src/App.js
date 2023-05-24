@@ -1,9 +1,9 @@
-import Loader from "./containers/Loader";
+import ArrivalsLoader from "./containers/ArrivalsLoader";
 
 function App() {
   return (
     <>
-      <Loader />
+      <ArrivalsLoader />
     </>
   );
 }

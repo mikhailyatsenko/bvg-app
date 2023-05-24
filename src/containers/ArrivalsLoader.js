@@ -2,13 +2,13 @@ import MainPage from "../components/MainPage";
 import Arrivals from "../components/Arrivals";
 import { useEffect, useState } from "react";
 
-const Loader = () => {
+const ArrivalsLoader = () => {
   const [inputValue, setInputValue] = useState("");
   const [stops, setStops] = useState([]);
   const [arrivals, setArrivals] = useState([]);
   const [selectedStop, setSelectedStop] = useState({ id: "", name: "" });
   // const [stopId, setStopId] = useState("");
-  const [period, setPeriod] = useState("3");
+  const [period, setPeriod] = useState("10");
   const [transport, setTransport] = useState("all");
   const [isLoading, setIsloading] = useState(true);
   const [filteredArrivals, setFilteredArrivals] = useState(null);
@@ -59,6 +59,8 @@ const Loader = () => {
   };
 
   const selectStop = (selectedStopId, selectedStopName) => {
+    setPeriod("10");
+    setTransport("all");
     setSelectedStop({ id: selectedStopId, name: selectedStopName });
   };
 
@@ -126,12 +128,12 @@ const Loader = () => {
         selectedStopName={selectedStop.name}
         removeAllFavoriteStops={removeAllFavoriteStops}
       />
-      <Arrivals changePeriod={changePeriod} changeTransport={changeTransport} toggleStopInFav={toggleStopInFav} arrivals={filteredArrivals || arrivals} selectedStopName={selectedStop.name} isStopInfavoriteStops={isStopInfavoriteStops} />
+      <Arrivals changePeriod={changePeriod} changeTransport={changeTransport} toggleStopInFav={toggleStopInFav} arrivals={filteredArrivals || arrivals} selectedStopName={selectedStop.name} isStopInfavoriteStops={isStopInfavoriteStops} isLoading={isLoading} />
     </main>
   );
 };
 
-export default Loader;
+export default ArrivalsLoader;
 
 // let arrayFailed = [];
 
