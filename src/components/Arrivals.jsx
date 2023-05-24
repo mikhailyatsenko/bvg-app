@@ -1,7 +1,10 @@
 import LoaderGrid from "./LoaderGrid";
+import { useRef } from "react";
 
 function Arrivals(props) {
   const { changePeriod, changeTransport, toggleStopInFav, arrivals, selectedStopName, isStopInfavoriteStops, isLoading } = props;
+
+  const snackbarRef = useRef();
 
   return (
     <>
@@ -29,8 +32,12 @@ function Arrivals(props) {
               <span
                 onClick={() => {
                   toggleStopInFav();
+                  snackbarRef.current.className = "show";
+                  setTimeout(() => {
+                    snackbarRef.current.className = "";
+                  }, 3000);
                 }}
-                className={"tooltip material-symbols-outlined " + (isStopInfavoriteStops() && "filled")}
+                className={"tooltip material-symbols-outlined" + (isStopInfavoriteStops() ? " filled" : "")}
               >
                 star
               </span>
@@ -53,6 +60,9 @@ function Arrivals(props) {
       )}
 
       {isLoading && <LoaderGrid />}
+      <div ref={snackbarRef} id="snackbar">
+        {isStopInfavoriteStops() ? "Stop added to Favorites" : "Stop removed from Favorites"}
+      </div>
     </>
   );
 }

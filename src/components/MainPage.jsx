@@ -56,7 +56,9 @@ function MainPage(props) {
           {!inputValue && Boolean(favoriteStops.length) && (
             <>
               <div className="fav-description">This is your favorites stops. Need another stop arrivals? Start type stop name</div>
-              <div onClick={removeAllFavoriteStops}>Remove all favorites stops</div>
+              <div className="remove-favorites" onClick={removeAllFavoriteStops}>
+                <b>Remove all favorites stops</b>
+              </div>
             </>
           )}
         </div>
