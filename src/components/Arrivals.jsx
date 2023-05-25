@@ -8,23 +8,25 @@ function Arrivals(props) {
 
   return (
     <>
-      {selectedStopName && (
+      {selectedStopName && !isLoading && (
         <div className="arrivals">
-          <div className="arrival-options">
-            <select onChange={changeTransport}>
-              <option value="all">All types of transport</option>
-              <option value="suburban">S-bahn</option>
-              <option value="subway">U-bahn</option>
-              <option value="bus">Bus</option>
-              <option value="tram">Tram</option>
-              <option value="regional">Regional</option>
-            </select>
-            <select onChange={changePeriod}>
-              <option value="10">10 minutes</option>
-              <option value="20">20 minutes</option>
-              <option value="30">30 minutes</option>
-            </select>
-          </div>
+          {Boolean(arrivals.length) && (
+            <div className="arrival-options">
+              <select onChange={changeTransport}>
+                <option value="all">All types of transport</option>
+                <option value="suburban">S-bahn</option>
+                <option value="subway">U-bahn</option>
+                <option value="bus">Bus</option>
+                <option value="tram">Tram</option>
+                <option value="regional">Regional</option>
+              </select>
+              <select onChange={changePeriod}>
+                <option value="10">10 minutes</option>
+                <option value="20">20 minutes</option>
+                <option value="30">30 minutes</option>
+              </select>
+            </div>
+          )}
 
           <div className="stop-info">
             <div className="selected-stop-name">
@@ -37,13 +39,20 @@ function Arrivals(props) {
                     snackbarRef.current.className = "";
                   }, 3000);
                 }}
-                className={"tooltip material-symbols-outlined" + (isStopInfavoriteStops() ? " filled" : "")}
+                className={"star material-symbols-outlined" + (isStopInfavoriteStops() ? " filled" : "")}
               >
                 star
               </span>
             </div>
-
             <div className="arrivals-table">
+              {Boolean(arrivals.length) && (
+                <div className="arrival-table-headers">
+                  <div className="time">Arrival time</div>
+                  <div className="type">Type of transport</div>
+                  <div className="transport-number">Number</div>
+                  <div className="destination">Destination</div>
+                </div>
+              )}
               {arrivals.length
                 ? arrivals.map((arrival, index) => (
                     <div className="arrival-info" key={index}>

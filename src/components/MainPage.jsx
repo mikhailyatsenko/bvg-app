@@ -15,16 +15,23 @@ function MainPage(props) {
 
   return (
     <>
-      <input
-        className={"input-stop-name " + (selectedStopName && "small-input")}
-        type="text"
-        value={inputValue}
-        placeholder="type stop name here..."
-        ref={inputRef}
-        onChange={(event) => {
-          updateInput(event.target.value);
-        }}
-      />
+      <div className="search-input">
+        <input
+          className={"input-stop-name " + (selectedStopName && "small-input")}
+          type="text"
+          value={inputValue}
+          placeholder="type stop name here..."
+          ref={inputRef}
+          onChange={(event) => {
+            updateInput(event.target.value);
+          }}
+        />
+        {selectedStopName && (
+          <div onClick={() => updateInput("")} className="another-search-button">
+            Search another stop
+          </div>
+        )}
+      </div>
 
       {!selectedStopName && !isLoading && (
         <div className="stops-list">
@@ -55,9 +62,11 @@ function MainPage(props) {
             : "no results for this query"}
           {!inputValue && Boolean(favoriteStops.length) && (
             <>
-              <div className="fav-description">This is your favorites stops. Need another stop arrivals? Start type stop name</div>
+              <div className="fav-description">This is your favorites stops. Need another stop arrivals? Start type name of the stop</div>
               <div className="remove-favorites" onClick={removeAllFavoriteStops}>
-                <b>Remove all favorites stops</b>
+                <span class="material-symbols-outlined">delete_forever</span>
+                <br />
+                Remove all favorites stops
               </div>
             </>
           )}
