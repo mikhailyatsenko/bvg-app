@@ -10,23 +10,21 @@ function Arrivals(props) {
     <>
       {selectedStopName && !isLoading && (
         <div className="arrivals">
-          {Boolean(arrivals.length) && (
-            <div className="arrival-options">
-              <select onChange={changeTransport}>
-                <option value="all">All types of transport</option>
-                <option value="suburban">S-bahn</option>
-                <option value="subway">U-bahn</option>
-                <option value="bus">Bus</option>
-                <option value="tram">Tram</option>
-                <option value="regional">Regional</option>
-              </select>
-              <select onChange={changePeriod}>
-                <option value="10">10 minutes</option>
-                <option value="20">20 minutes</option>
-                <option value="30">30 minutes</option>
-              </select>
-            </div>
-          )}
+          <div className="arrival-options">
+            <select onChange={changeTransport}>
+              <option value="all">All types of transport</option>
+              <option value="suburban">S-bahn</option>
+              <option value="subway">U-bahn</option>
+              <option value="bus">Bus</option>
+              <option value="tram">Tram</option>
+              <option value="regional">Regional</option>
+            </select>
+            <select onChange={changePeriod}>
+              <option value="10">10 minutes</option>
+              <option value="20">20 minutes</option>
+              <option value="30">30 minutes</option>
+            </select>
+          </div>
 
           <div className="stop-info">
             <div className="selected-stop-name">
