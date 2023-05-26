@@ -64,8 +64,8 @@ const ArrivalsLoader = () => {
     setSelectedStop({ id: selectedStopId, name: selectedStopName });
   };
 
-  const changePeriod = (event) => {
-    setPeriod(event.target.value);
+  const changePeriod = (period) => {
+    setPeriod(period);
   };
 
   const changeTransport = (event) => {
@@ -128,7 +128,7 @@ const ArrivalsLoader = () => {
         selectedStopName={selectedStop.name}
         removeAllFavoriteStops={removeAllFavoriteStops}
       />
-      <Arrivals changePeriod={changePeriod} changeTransport={changeTransport} toggleStopInFav={toggleStopInFav} arrivals={filteredArrivals || arrivals} selectedStopName={selectedStop.name} isStopInfavoriteStops={isStopInfavoriteStops} isLoading={isLoading} />
+      <Arrivals changePeriod={changePeriod} period={period} changeTransport={changeTransport} toggleStopInFav={toggleStopInFav} arrivals={filteredArrivals || arrivals} selectedStopName={selectedStop.name} isStopInfavoriteStops={isStopInfavoriteStops} isLoading={isLoading} />
     </main>
   );
 };

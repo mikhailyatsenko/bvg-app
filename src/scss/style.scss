@@ -111,17 +111,19 @@ main {
   }
 
   .arrival-options {
-    text-align: center;
+    display: flex;
+    justify-content: center;
   }
   .stop-info {
     width: fit-content;
     margin: 0 auto;
-    .selected-stop-name {
-      text-align: center;
-      font-size: 24px;
-      padding-top: 20px;
-    }
   }
+}
+
+.selected-stop-name {
+  text-align: center;
+  font-size: 24px;
+  padding-top: 20px;
 }
 
 .search-input {
@@ -150,6 +152,18 @@ main {
     cursor: pointer;
     &:hover {
       color: #000;
+    }
+  }
+}
+
+.change-period {
+  display: flex;
+  align-items: center;
+  .period {
+    padding-left: 10px;
+    cursor: pointer;
+    &.selected-period {
+      color: #f9e853;
     }
   }
 }
